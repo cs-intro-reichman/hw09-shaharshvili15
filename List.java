@@ -29,40 +29,90 @@ public class List {
 
     /** GIVE Adds a CharData object with the given character to the beginning of this list. */
     public void addFirst(char chr) {
-        // Your code goes here
+        first = new Node(new CharData(chr),first);
+        size++;
     }
     
     /** GIVE Textual representation of this list. */
     public String toString() {
-        // Your code goes here
+        StringBuilder stb = new StringBuilder("\n");
+        Node pointer = this.first;
+        while (pointer!=null){
+            stb.append(pointer.cp.toString()).append("\n");
+            pointer = pointer.next;
+        }
+        return stb.toString();
     }
 
     /** Returns the index of the first CharData object in this list
      *  that has the same chr value as the given char,
      *  or -1 if there is no such object in this list. */
     public int indexOf(char chr) {
-        // Your code goes here
+        int index = 0;
+        Node pointer = this.first;
+        while (pointer!=null){
+            if(pointer.cp.chr == chr){
+                return index;
+            }
+            index++;
+            pointer = pointer.next;
+        }
+        return -1;
     }
 
     /** If the given character exists in one of the CharData objects in this list,
      *  increments its counter. Otherwise, adds a new CharData object with the
      *  given chr to the beginning of this list. */
     public void update(char chr) {
-        // Your code goes here
+        Node pointer = first;
+        boolean found = false;
+        while (pointer!=null){
+            if(pointer.cp.chr == chr){
+                pointer.cp.count++;
+                found= true;
+            }
+            pointer = pointer.next;
+        }
+        if(!found){
+            this.addFirst(chr);
+        }
     }
 
     /** GIVE If the given character exists in one of the CharData objects
      *  in this list, removes this CharData object from the list and returns
      *  true. Otherwise, returns false. */
     public boolean remove(char chr) {
-        // Your code goes here
+        Node current = this.first;
+        Node prev = null;
+        while (current!=null){
+            if(current.cp.chr == chr){
+                prev.next = current.next;
+                size --;
+                return true;
+            }
+            prev = current;
+            current = current.next;
+        }
+        return false;
     }
 
     /** Returns the CharData object at the specified index in this list. 
      *  If the index is negative or is greater than the size of this list, 
      *  throws an IndexOutOfBoundsException. */
     public CharData get(int index) {
-        // Your code goes here
+        if(index<0 || index>= this.size){
+            throw new IndexOutOfBoundsException("this list does not contain this index");
+        }
+        int indexList= 0;
+        Node pointer = first;
+        while (pointer!=null){
+            if(indexList == index){
+                return pointer.cp;
+            }
+            indexList++;
+            pointer = pointer.next;
+        }
+        return new CharData('s');
     }
 
     /** Returns an array of CharData objects, containing all the CharData objects in this list. */

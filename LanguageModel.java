@@ -33,29 +33,53 @@ public class LanguageModel {
 
     /** Builds a language model from the text in the given file (the corpus). */
 	public void train(String fileName) {
-		// Your code goes here
 	}
 
     // Computes and sets the probabilities (p and cp fields) of all the
 	// characters in the given list. */
-	public void calculateProbabilities(List probs) {				
+	public void calculateProbabilities(List probs) {
+        ListIterator iterator = probs.listIterator(0);
+        int totalChar = 0;
+        while (iterator.hasNext()){
+            totalChar += iterator.current.cp.count;
+            iterator.next();
+        }
+        double cumulativeProbability = 0.0;
+        iterator = probs.listIterator(0);
+        while (iterator.hasNext()){
+            double prob = (double) iterator.current.cp.count / totalChar;
+            cumulativeProbability += prob;
+            iterator.current.cp.p = prob;
+            iterator.current.cp.cp = cumulativeProbability;
+            iterator.next();
+        }
+
 		// Your code goes here
 	}
 
     // Returns a random character from the given probabilities list.
 	public char getRandomChar(List probs) {
-		// Your code goes here
+        double r = randomGenerator.nextDouble();
+        ListIterator iterator = probs.listIterator(0);
+        while (iterator.hasNext()){
+            if(iterator.current.cp.cp> r){
+                return iterator.current.cp.chr;
+            }
+            iterator.next();
+        }
+        return probs.get(probs.getSize()-1).chr;
 	}
 
     /**
 	 * Generates a random text, based on the probabilities that were learned during training. 
 	 * @param initialText - text to start with. If initialText's last substring of size numberOfLetters
 	 * doesn't appear as a key in Map, we generate no text and return only the initial text. 
-	 * @param numberOfLetters - the size of text to generate
+	 *. @param numberOfLetters - the size of text to generate
 	 * @return the generated text
 	 */
 	public String generate(String initialText, int textLength) {
 		// Your code goes here
+        return "";
 	}
 
     /** Returns a string representing the map of this language model. */
