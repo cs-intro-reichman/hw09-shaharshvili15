@@ -35,13 +35,18 @@ public class List {
     
     /** GIVE Textual representation of this list. */
     public String toString() {
-        StringBuilder stb = new StringBuilder("\n");
-        Node pointer = this.first;
-        while (pointer!=null){
-            stb.append(pointer.cp.toString()).append("\n");
-            pointer = pointer.next;
+        if (size == 0) {
+            return "()";
         }
-        return stb.toString();
+        StringBuilder str = new StringBuilder("(");
+        Node current = first;
+        while (current != null) {
+            str.append(current.cp.toString()).append(" ");
+            current = current.next;
+        }
+        //removes the trailing space and adds the ')'
+        str.deleteCharAt(str.length() - 1).append(")");
+        return str.toString();
     }
 
     /** Returns the index of the first CharData object in this list
