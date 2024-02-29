@@ -124,34 +124,32 @@ public class LanguageModel {
 	}
 
     public static void main(String[] args) {
-                // Check if the correct number of arguments is provided
-                if (args.length != 5) {
-                    System.out.println("Usage: java LanguageModelCLI <windowLength> <initialText> <generatedTextLength> <randomGeneration> <fileName>");
-                    return;
-                }
+        // Check if the correct number of arguments is provided
+        if (args.length != 5) {
+            System.out.println("Usage: java LanguageModelCLI <windowLength> <initialText> <generatedTextLength> <randomGeneration> <fileName>");
+            return;
+        }
 
-                // Parse command-line arguments
-                int windowLength = Integer.parseInt(args[0]);
-                String initialText = args[1];
-                int generatedTextLength = Integer.parseInt(args[2]);
-                boolean randomGeneration = args[3].equalsIgnoreCase("random");
-                String fileName = args[4];
+        // Parse command-line arguments
+        int windowLength = Integer.parseInt(args[0]);
+        String initialText = args[1];
+        int generatedTextLength = Integer.parseInt(args[2]);
+        boolean randomGeneration = args[3].equalsIgnoreCase("random");
+        String fileName = args[4];
 
-                // Create the LanguageModel object
-                LanguageModel lm;
-                if (randomGeneration) {
-                    lm = new LanguageModel(windowLength);
-                } else {
-                    lm = new LanguageModel(windowLength, 20); // Seed value of 20
-                }
+        // Create the LanguageModel object
+        LanguageModel lm;
+        if (randomGeneration) {
+            lm = new LanguageModel(windowLength);
+        } else {
+            lm = new LanguageModel(windowLength, 20); // Seed value of 20
+        }
 
-                // Trains the model, creating the map
-                lm.train(fileName);
+        // Trains the model, creating the map
+        lm.train(fileName);
 
-                // Generates text and prints it
-                System.out.println(lm.generate(initialText, generatedTextLength));
-            }
-
-
+        // Generates text and prints it
+        System.out.println(lm.generate(initialText, generatedTextLength));
+    }
 
 }

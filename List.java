@@ -69,17 +69,12 @@ public class List {
      *  increments its counter. Otherwise, adds a new CharData object with the
      *  given chr to the beginning of this list. */
     public void update(char chr) {
-        Node pointer = first;
-        boolean found = false;
-        while (pointer!=null){
-            if(pointer.cp.chr == chr){
-                pointer.cp.count++;
-                found= true;
-            }
-            pointer = pointer.next;
+        boolean found = indexOf(chr) >= 0;
+        while (found){
+            get(indexOf(chr)).count++;
         }
         if(!found){
-            this.addFirst(chr);
+            addFirst(chr);
         }
     }
 
