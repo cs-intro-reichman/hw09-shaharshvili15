@@ -100,19 +100,12 @@ public class List {
      *  If the index is negative or is greater than the size of this list, 
      *  throws an IndexOutOfBoundsException. */
     public CharData get(int index) {
-        if(index<0 || index>= this.size){
-            throw new IndexOutOfBoundsException("this list does not contain this index");
+        // Your code goes here
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("this list does not contain this index " + index);
         }
-        int indexList= 0;
-        Node pointer = first;
-        while (pointer!=null){
-            if(indexList == index){
-                return pointer.cp;
-            }
-            indexList++;
-            pointer = pointer.next;
-        }
-        return new CharData('s');
+        CharData[] list = toArray();
+        return list[index];
     }
 
     /** Returns an array of CharData objects, containing all the CharData objects in this list. */

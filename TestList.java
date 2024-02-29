@@ -14,7 +14,7 @@ public class TestList {
         list.update('m');
         list.update('o');
         list.update('c');
-        LanguageModel languageModel = new LanguageModel(7);
+        LanguageModel languageModel = new LanguageModel(4);
         languageModel.calculateProbabilities(list);
         var iterator = list.listIterator(0);
         while (iterator.hasNext()){
@@ -22,11 +22,19 @@ public class TestList {
                     ", Cumulative Probability: " + iterator.current.cp.cp);
             iterator.next();
         }
-        Random random = new Random();
-        int numberOfTests = 10; // Number of random character tests
-        for (int i = 0; i < numberOfTests; i++) {
-            char randomChar = languageModel.getRandomChar(list);
-            System.out.println("Random Character " + (i+1) + ": " + randomChar);
-        }
+        languageModel.train("test.txt");
+        String initialText1 = "you_";
+        int textLength1 = 20;
+        String generatedText1 = languageModel.generate(initialText1, textLength1);
+        System.out.println("Generated Text 1:");
+        System.out.println(generatedText1);
+
+        //String initialText2 = "Hello, ";
+        //int textLength2 = 20;
+        //String generatedText2 = languageModel.generate(initialText2, textLength2);
+        //System.out.println("Generated Text 2:");
+        //System.out.println(generatedText2);
+
+
     }
 }
