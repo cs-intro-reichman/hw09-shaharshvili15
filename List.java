@@ -69,11 +69,10 @@ public class List {
      *  increments its counter. Otherwise, adds a new CharData object with the
      *  given chr to the beginning of this list. */
     public void update(char chr) {
-        boolean found = indexOf(chr) >= 0;
-        while (found){
-            get(indexOf(chr)).count++;
-        }
-        if(!found){
+        int index = indexOf(chr);
+        if (index >= 0) {
+            this.get(index).count++;
+        } else {
             addFirst(chr);
         }
     }
