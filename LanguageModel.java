@@ -61,7 +61,7 @@ public class LanguageModel {
             CharData current = iterator.next();
             totalChar += current.count;
         }
-        ListIterator secondIterator = probs.listIterator(1);
+        ListIterator secondIterator = probs.listIterator(0);
         CharData current = probs.getFirst();
         current.p = (double) current.count / (double) totalChar;
         current.cp = current.p;
@@ -73,7 +73,8 @@ public class LanguageModel {
             current.cp = prev.cp + current.p;
         }
 
-		// Your code goes here
+
+
 	}
 
     // Returns a random character from the given probabilities list.
