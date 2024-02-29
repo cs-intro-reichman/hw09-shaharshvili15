@@ -89,16 +89,21 @@ public class List {
     public boolean remove(char chr) {
         Node current = this.first;
         Node prev = null;
-        while (current!=null){
-            if(current.cp.chr == chr){
-                prev.next = current.next;
-                size --;
-                return true;
-            }
+        while (current!=null && current.cp.chr!=chr) {
             prev = current;
             current = current.next;
         }
-        return false;
+        if (current == null) {
+            return false;
+        }
+        if(prev == null){
+            first = first.next;
+        }
+        else {
+            prev.next = current.next;
+        }
+        size--;
+        return true;
     }
 
     /** Returns the CharData object at the specified index in this list. 
