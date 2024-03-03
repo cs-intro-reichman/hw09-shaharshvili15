@@ -452,7 +452,7 @@ public final class In {
      * Reads the next token from this input stream, parses it as a {@code byte},
      * and returns the {@code byte}.
      * <p>
-     * To read binary data, use {@link BinaryIn}.
+     * To read binary data, use {@link// BinaryIn}.
      *
      * @return the next {@code byte} in this input stream
      * @throws NoSuchElementException if the input stream is empty
@@ -626,7 +626,7 @@ public final class In {
      * an array of integers.
      *
      * @return     the integers on standard input
-     * @deprecated Replaced by {@link StdIn#readAllInts()}.
+     * @deprecated Replaced by {@link //StdIn#readAllInts()}.
      */
     @Deprecated
     public static int[] readInts() {
@@ -638,7 +638,7 @@ public final class In {
      * an array of doubles.
      *
      * @return     the doubles on standard input
-     * @deprecated Replaced by {@link StdIn#readAllDoubles()}.
+     * @deprecated Replaced by {@link //StdIn#readAllDoubles()}.
      */
     @Deprecated
     public static double[] readDoubles() {
@@ -650,7 +650,7 @@ public final class In {
      *  an array of strings.
      *
      * @return     the strings on standard input
-     * @deprecated Replaced by {@link StdIn#readAllStrings()}.
+     * @deprecated Replaced by {@link //StdIn#readAllStrings()}.
      */
     @Deprecated
     public static String[] readStrings() {
